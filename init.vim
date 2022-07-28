@@ -10,9 +10,8 @@ call plug#begin()
 	Plug 'nvim-lua/plenary.nvim'
 	Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 	Plug 'puremourning/vimspector'
-    Plug 'mfussenegger/nvim-dap'
-    Plug 'arcticicestudio/nord-vim'
-    Plug 'navarasu/onedark.nvim'
+    Plug 'frenzyexists/aquarium-vim', { 'branch': 'develop' }
+    Plug 'sainnhe/sonokai'
 
 nnoremap <C-f> :NERDTreeFind<CR>	Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 call plug#end()
@@ -20,15 +19,14 @@ call plug#end()
 " General configs
 set number
 set guifont='SourceCodePro'
-colorscheme onedark
+colorscheme sonokai
 set encoding=utf-8
 set tabstop=4
 set shiftwidth=4
 set expandtab
 set mouse=a
-" python3
-let g:python3_host_prog='~/AppData/Local/Programs/Python/Python310/python.exe'
-
+set cursorline
+set splitbelow
 "set SPACE as leader key
 noremap <SPACE> <Nop>
 let mapleader = "\<Space>"
@@ -37,8 +35,6 @@ let mapleader = "\<Space>"
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-let g:onedark_config = {'style': 'warm'}
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
@@ -81,3 +77,11 @@ nnoremap <leader>bd :bd<CR>
 
 " clear search results
 nnoremap <leader>sc :noh<CR>
+
+" split terminal configs
+nnoremap <leader>t :split \| terminal <CR>:10winc -<CR>
+tnoremap <A-j> <C-\><C-N><C-w>j
+tnoremap <A-k> <C-\><C-N><C-w>k
+tnoremap <Esc> <C-\><C-n>
+nnoremap <A-h> <C-w>h
+nnoremap <A-j> <C-w>j
