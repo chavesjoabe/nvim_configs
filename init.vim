@@ -85,3 +85,6 @@ tnoremap <A-k> <C-\><C-N><C-w>k
 tnoremap <Esc> <C-\><C-n>
 nnoremap <A-h> <C-w>h
 nnoremap <A-j> <C-w>j
+
+" COC-Prettier
+nnoremap <leader>f :CocCommand prettier.formatFile <CR>
