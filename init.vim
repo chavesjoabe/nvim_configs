@@ -2,7 +2,7 @@
 call plug#begin()
 	Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 	Plug 'davidosomething/vim-colors-meh'
-    Plug 'frenzyexists/aquarium-vim', { 'branch': 'develop' }
+  Plug 'frenzyexists/aquarium-vim', { 'branch': 'develop' }
 	Plug 'vim-airline/vim-airline'
 	Plug 'vim-airline/vim-airline-themes'
 	Plug 'preservim/nerdtree'
@@ -10,8 +10,10 @@ call plug#begin()
 	Plug 'nvim-lua/plenary.nvim'
 	Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 	Plug 'puremourning/vimspector'
-    Plug 'frenzyexists/aquarium-vim', { 'branch': 'develop' }
-    Plug 'sainnhe/sonokai'
+  Plug 'frenzyexists/aquarium-vim', { 'branch': 'develop' }
+  Plug 'sainnhe/sonokai'
+  Plug 'tpope/vim-fugitive'
+  Plug 'sonph/onehalf', { 'rtp': 'vim' }
 
 nnoremap <C-f> :NERDTreeFind<CR>	Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 call plug#end()
@@ -21,8 +23,8 @@ set number
 set guifont='SourceCodePro'
 colorscheme sonokai
 set encoding=utf-8
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set expandtab
 set mouse=a
 set cursorline
@@ -54,6 +56,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
 
 "TODO -> insert GIT and Version Controll extentions
 "TODO -> insert fzf
@@ -74,6 +77,7 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>bn :bn<CR>
 nnoremap <leader>bp :bp<CR>
 nnoremap <leader>bd :bd<CR>
+nnoremap <leader>bD :%bd<CR>
 
 " clear search results
 nnoremap <leader>sc :noh<CR>
@@ -88,3 +92,23 @@ nnoremap <A-j> <C-w>j
 
 " COC-Prettier
 nnoremap <leader>f :CocCommand prettier.formatFile <CR>
+
+" Vimspector configs
+let g:vimspector_enable_mappings = 'HUMAN'
+
+function CreateVimspectorFile()
+  let vimspectorContent = '{"configurations": {"run": {"adapter": "vscode-node","breakpoints": {"exception": {"all": "N","uncaught": "N"}},"configuration": {"request": "attach","type": "node","stopOnEntry": false,"console": "integratedTerminal","program": "${workspaceFolder}/build/index.js","skipFiles": ["node_modules/*/.js", "<node_internals>/*/.js"],"processId": "${processId}"}}}}'
+:call writefile([vimspectorContent], '.vimspector.json', 'a')
+endfunction
+
+nnoremap <leader>dcf :call CreateVimspectorFile()<CR>
+nnoremap <leader>D :call vimspector#Launch()<CR>
+nnoremap <leader>dR :call vimspector#Reset()<CR>
+nnoremap <leader>dt :call vimspector#ToggleBreakpoint()<CR>
+nnoremap <leader>dT :call vimspector#ClearBreakpoints()<CR>
+nnoremap <leader>dC :call vimspector#Continue()<CR>
+
+nmap <Leader>dr <Plug>VimspectorRestart
+nmap <leader>dj <Plug>VimspectorStepOver
+nmap <Leader>dh <Plug>VimspectorStepOut
+nmap <Leader>dl <Plug>VimspectorStepInto
