@@ -14,6 +14,7 @@ call plug#begin()
   Plug 'sainnhe/sonokai'
   Plug 'tpope/vim-fugitive'
   Plug 'sonph/onehalf', { 'rtp': 'vim' }
+  Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 
 nnoremap <C-f> :NERDTreeFind<CR>	Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 call plug#end()
@@ -22,6 +23,7 @@ call plug#end()
 set number
 set guifont='SourceCodePro'
 colorscheme sonokai
+set path+=**
 set encoding=utf-8
 set tabstop=2
 set shiftwidth=2
@@ -43,6 +45,17 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window
+nnoremap <C-d> :call ShowDocumentation()<CR>
+
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
+endfunction
 
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
@@ -112,3 +125,7 @@ nmap <Leader>dr <Plug>VimspectorRestart
 nmap <leader>dj <Plug>VimspectorStepOver
 nmap <Leader>dh <Plug>VimspectorStepOut
 nmap <Leader>dl <Plug>VimspectorStepInto
+
+" Markdown Preview Configs
+
+nnoremap <leader>mdp :MarkdownPreview<CR>
