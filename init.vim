@@ -35,6 +35,8 @@ set splitbelow
 noremap <SPACE> <Nop>
 let mapleader = "\<Space>"
 
+" Use leader y to copy
+vnoremap <leader> y "+y
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -82,7 +84,7 @@ let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 
 " Telescope configs
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>F <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
