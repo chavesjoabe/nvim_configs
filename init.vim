@@ -89,8 +89,8 @@ nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 " set buffer navigation
-nnoremap <leader>bn :bn<CR>
-nnoremap <leader>bp :bp<CR>
+nnoremap <leader>. :bn<CR>
+nnoremap <leader>, :bp<CR>
 nnoremap <leader>bd :bd<CR>
 nnoremap <leader>bD :%bd<CR>
 
