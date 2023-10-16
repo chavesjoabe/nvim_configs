@@ -1,4 +1,4 @@
-" Author: @theteachr
+" Author: @theteachr - @joabechaves
 
 " Plugins {{{
 call plug#begin()
